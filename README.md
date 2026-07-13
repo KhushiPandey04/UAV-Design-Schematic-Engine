@@ -26,6 +26,9 @@ Adjusting the sliders triggers instant mathematical updates across the schematic
 
 ![Card B & Flight Performance Outputs](screenshots/03_card_b_and_flight_outputs.png)
 *Card B environment/balance sliders with live lift, drag, and vertical stabilizer outputs*
+## Demo Video
+**Dynamic Transformations:** Watch the schematic vector layout scale instantly as you move control inputs.
+***Observe** the calculation matrix update flight metrics and also an Aerodynamic Pop up Guide tells how sliders extremes affect Vector layouts and outputs calculation.
 # DEVELOPMENT NOTE : 
 * **Core Engineering Work:** UAV_workspace_Engine.cpp — The full aerodynamic and structural sizing engine (wing planform sizing, tail volume coefficient calculations, stall/cruise velocity, Reynolds number, lift/drag computation, elevator and rudder sizing) was independently designed and implemented by me. All governing equations, constants, and engineering assumptions reflect my own aerospace calculations.
 * **Frontend UI/Layout (UAV frontend.html + CSS)** — The interactive dashboard layout, card-based slider system (Card A: Sizing Constraints, Card B: Environment & Balance), the live canvas schematic (top-down wing view, V-tail side profile, dimension-line annotations), and the aerodynamic guide modal were designed and built by me.
