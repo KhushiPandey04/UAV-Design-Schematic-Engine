@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+    <style>
+      body {
+        background-color: #eef4fa;
+      }
+
+      .content_container{
+       display: none; 
+      
+   
+      
+      position : fixed;
+      
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw; 
+
+    
+      align-items: center;
+    justify-content: center;
+    background-color: rgba(15, 23, 42, 0.4); 
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px);
+    overflow: hidden;
+      } 
+      button {
+      background-color: #f6cce1;
+      border-radius: 5px;
+      padding: 5px 13px;
+      box-shadow: 0 2px 4px rgb(0,0,0,0.5);
+     }
+     .content {
+      background-color: #fff;
+       padding: 24px 32px; 
+      width: 90%; 
+       max-width: 680px;
+      text-align: left;
+      max-height: 75vh;
+      overflow-y: auto;
+    font-family: system-ui, -apple-system, sans-serif;
+     }
+     .content p {
+      font-size: 14px;
+      color: chocolate;
+     }
+     .content h1 {
+      font-size: 20px;
+     }
+     .content_container.show {
+      display: flex;
+      pointer-events: auto;
+     }
+     #close {
+      background-color: #ef4444; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    float: right;
+     }
+      
+      .physics {
+        font-size: 22px;
+      }
+      .scroll {
+        font-size: 39px;
+        color:#033859;
+      }
+   
+      </style>
+
+</head>
+<body>
+    <h1 style="color: #C2410C"> <u> INTERACTIVE RECTANGULAR UAV DESIGN & SCHEMATIC DIAGRAM </u> </h1>
+    
+
+    <img src = "https://uosdesign.org/designshow2016/files/2016/06/UAVs020.jpg" height = "100"  />
+    <button id="btn_reset" style="background-color: #4f46e5; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 15px;">
+    Reset to Default Specs
+   
+</button>
+<div class="box" style="flex: 1;min-width: 300px; ">
+        <h2 style="color: rgb(211, 132, 211); font-size: 20px;">
+          <button id="open" style="color:#14809e; font-size: 17px; cursor: pointer;">
+            Aerodynamic Guide(CLICK ME)
+          </button>
+          </h2>
+          <div class="content_container" id="content_container">
+          <div class="content">
+            <h1>1.MAIN WING SIZING CONSTRASINTS</h1>
+            <p>The main wing generates the lift necessary to overcome weight</p>
+            <p>Wing Loading: Lower wing loading less than 30 gives slower stall speeds which are good for gliders/trainer planes. Higher loading speeds up cruise but requires longer runaway. </p>
+            <p>Aspect Ratio (AR = b² / S): Slenderness of the wing. Higher AR minimizes induced drag (wingtip vortices), increasing efficiency at the expense of structural stiffness.</p>
+            <h1>2.TAIL VOLUME COEFF AND ASPECT RATIOS</h1>
+            <p>Tail volume coefficients : are dimensionless values used by aerospace engineers to guarantee pitch (longitudinal) and yaw (directional) stability:</p>
+            <p>Horizontal Tail Coefficient (Vh):
+             Vh = (Sh * Lt) / (S * MAC)
+             Recommended range: 0.35 to 0.65. Provides sufficient counter-acting pitching moment to stabilize the wing and maintain pitch trim.</p>
+             <p>Horizontal Tail Coefficient (Vh):
+             Vh = (Sh * Lt) / (S * MAC)
+             Recommended range: 0.35 to 0.65. Provides sufficient counter-acting pitching moment to stabilize the wing and maintain pitch trim.</p>
+             <p>Horizontal Tail Aspect Ratio: It provide primary stablization for pitch stablity.Optimizes longitudinal pitch stability. Higher values yield a slender, highly efficient tail plane that delivers rapid pitch corrections with minimal drag, but induces severe root bending stress requiring structural mass tradeoffs.</p>
+             <p>Vertical Tail Coeff</p>
+             <p>Controls directional yaw damping. Increasing this parameter creates a taller stabilizer that aggressively counters side-slip and heading deviations, though it escalates torsional twisting loads on the rear fuselage and elevates sensitivity to crosswind gusts during critical landing phases.</p>
+             <h1>ENVIROMENT AND BALANCE</h1>
+             <p>Max Lift Coeff: Defines the aerodynamic limit of the airfoil. Increasing this value directly reduces the UAV's stall speed, allowing it to fly slower and take off from shorter runways, but typically requires high-lift devices or specialized camber airfoils that can introduce structural profiling complexity</p>
+             <p>Angle Of Attack: The angle between the wing's chord line and the oncoming airflow. Sliding this higher scales up the instantaneous lift generation for climbing, but pushing it past the critical limit disrupts smooth airflow over the upper surface, triggering sudden boundary layer separation and catastrophic aerodynamic stall.</p>
+             <p>Payload Balance shift: Simulates internal mass movement relative to the mean aerodynamic center. Shifting this slider alters the Longitudinal Center of Gravity (CG); moving it forward demands constant tail trimming drag to counter a heavy nose, while moving it too far aft diminishes pitch restoring stability, making flight completely uncontrollable.</p>
+             <button id="close">
+              close
+              </button>
+          </div>
+          </div>
+        </div>
+        
+   
+  <hr>
+    <br />
+    <div style="display: flex; gap: 40px; align-items: flex-start; padding: 20px;">
+     <div style="flex: 1; min-width: 300px;">
+    
+    <div>
+    <form>
+    <h3 style="color : #0284C7"> CARD A : SIZING CONSTRAINTS </h3>
+     <br />
+     <!-- <label for="id1"> -->
+     <p style="color : rgb(87, 1, 104); font-size: 23px;"> Total Takeoff Weight (g) </p>
+     <input type="range" id="Total Takeoff Weight (g)" min="500" max="2000" step="10" value="700" style="width: 280px">
+     <span id="counter-display">700</span>g
+     <br />
+     <p style="color : rgb(87,1,104); font-size: 23px;"> Wing Loading</p>
+     <input type="range" id="Wing Loading" min="20" max="60" step="0.5" value="37.5" style="width: 280px"> 
+      <span id="wing-Display">37.5</span>N/m^2
+     <br />
+     <p style="color : rgb(87,1,104); font-size: 23px;">Main Aspect Ratio</p>
+     <input type="range" id="Main Aspect Ratio" min="7" max="14" step="0.1" value="9" style="width: 280px">
+     <span id="Main-Aspect-Ratio-Display">9</span>
+     <br /> 
+     <p style="color : rgb(87,1,104); font-size: 23px;">Total Moment Arm</p>
+     <input type="range" id="Total Moment Arm" min="30" max="80" step="1" value="52" style="width: 280px">
+     <span id="Total-Moment-Arm-Display">52</span>cm
+  
+     <br />
+     <p style="color : rgb(87,1,104); font-size: 23px;"> Horiz Tail Coeff</p>
+     <input type="range" id="Horiz Tail Coeff" min="0.3" max="0.9" step="0.01" value="0.5" style="width: 280px">
+     <span id="Horiz-Tail-Coeff-Display">0.5</span>
+     <br />
+     <p style="color : rgb(87,1,104); font-size: 23px;">Horiz Aspect Ratio</p>
+     <input type="range" id="Horiz Aspect Ratio" min="2" max="6" step="0.1" value="4" style="width: 280px">
+     <span id="Horiz-Aspect-Ratio-Display">4</span>
+     <br />
+     <p style="color : rgb(87,1,104); font-size: 23px;">Vert Tail Vol Coeff</p>
+     <input type="range" id="Vert Tail Vol Coeff" min="0.02" max="0.08" step="0.005" value="0.04" style="width: 280px">
+     <span id="Vert-Tail-Vol-Coeff-Display">0.04</span>
+     <br />
+     <p stle="color :  rgb(87,1,104); font-size: 23px;">Vert Aspect Ratio</p>
+     <input type="range" id="Vert Aspect Ratio" min="1.3" max="2" step="0.05" value="1.6" style="width: 280px">
+     <span id="Vert-Aspect-Ratio-Display">1.6</span>
+     </form>
+     </div> 
+     <br /> 
+     <hr>
+      <div>
+        <form>
+        <h3 style="color :darkgreen"> CARD B: ENVIROMENT & BALANCE </h3>
+        <br />
+        <p style="color :darkolivegreen; font-size: 23px;">Max Lift Coeff</p>
+        <input type="range" id="Max Lift Coeff" min="1" max="1.8" step="0.005" value="1.5" style="width: 280px">
+        <span id="Max-Lift-Coeff-Display">1.5</span>
+        <br />
+        <p style="color :darkolivegreen; font-size: 23px;">Angle of Attack</p>
+        <input type="range" id="Angle of Attack" min="-5" max="20" step="0.5" value="5" style="width: 280px">
+        <span id="Angle-of-Attack-Display">5</span>°
+        <br />
+        <p style="color :darkolivegreen; font-size: 23px;">Wing Tunnel Velocity</p>
+        <input type="range" id="Wing Tunnel Velocity" min="0" max="30" step="0.5" value="15" style="width: 280px">
+        <span id="Wing-Tunnel-Velocity-Display">15</span>m/s
+        <br />
+        <p style="color :darkolivegreen; font-size: 23px;"> Payload Balance Shift </p>
+        <input type="range" id="Payload Balance Shift" min="-100" max="100" step="1" value="0" style="width: 280px">
+        <span id="Payload-Balance-Shift-Display">0</span>mm
+        <br />
+        
+        </form>
+      </div>
+      </div>
+
+     <div style="flex: 1.5;">
+        <h3 style="color : #172554">UAV Live Schematic Blueprint:Adjust Sliders of Card A $ B to See Dynamic Changes</h3>
+        <canvas id="uavCanvas" width="600" height="400" style="border: 2px solid black; background-color: white;"></canvas>
+    
+   <div style="margin-top: 20px;" class="physics">
+      <h3 style="color: #d6336c;">PHYSICS CONSTANTS USED</h3>
+      <p style="color: purple;">rho(Air Density) = 1.225</p>
+      <p style="color: purple;">g(gravitational constant) = 9.81</p>
+      <p style="color: purple;">Nu(Viscousity) = 1.5e-5</p>
+      <p style="color: purple;">CDO(Drag coeff) = 0.02</p>
+      <p style="color: purple;"> Taper Ratio = 0.5</p>
+      <div style="margin-top: 25px;" class="scroll">
+      <h2>KEEP SCROLLING ↓</h2>
+      <div style="margin-top: 20px;">
+  <div style="display: flex; gap: 20px; margin-bottom: 15px;">
+    <div style="flex: 1;">
+      <p style="color:#4113e8; font-size: 20px;">lift</p>
+      <span id="out_lift" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span> <small>N</small>
+    </div>
+    <div style="flex: 1;">
+      <p style="color:#4113e8; font-size: 20px;">cl</p>
+      <span id="out_cl" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 20px;">
+    <div style="flex: 1;">
+      <p style="color:#4113e8; font-size: 20px;">cd</p>
+      <span id="out_cd" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span>
+    </div>
+    <div style="flex: 1;">
+      <p style="color:#4113e8; font-size: 20px;">drag_force</p>
+      <span id="out_drag_force" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span> <small>N</small>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+    <div style="flex: 1; min-width: 350px;">
+      <h2 style="color :royalblue">SIZING AND PERFORMANCE CALCULATIONS</h2>
+      <div><span>A</span><b style="color :#0e5178">  Main Wing Planform Sizing</b></div>
+      <div style="display: flex; gap: 15px; margin-bottom: 10px;">
+        <div style="flex:1;">
+          <p style="margin: 20px 0; font-weight: bold; color: #4113e8; font-size: 20px;">wing_area</p>
+          <span id="out_wing_area" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span> <small>m^2</small>
+        </div>
+        <div style="flex: 1;">
+          <p style="margin: 20px 0; font-weight: bold; color: #4113e8; font-size: 20px">wing_span</p>
+           <span id="out_wing_span" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span> <small>m</small>
+        </div>
+        <div style="flex:1;">
+          <p style="margin: 20px 0; font-weight: bold; color: #4113e8; font-size: 20px">MAC</p>
+           <span id="out_mac" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span> <small>m</small>
+        </div>
+        </div>
+        <hr>
+
+        <div><span>B</span><b style="color: #0e5178"> Aerodynamic Flight Performance </b></div>
+         <div style="display: flex; gap: 15px; margin-bottom: 10px;">
+          <div style="flex: 1">
+          <p style="margin: 20px 0; font-weight: bold; color: #4113e8; font-size: 20px">v_stall</p>
+           <span id="out_v_stall" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span> <small>m/s</small>
+            </div>
+            <div style="flex: 1">
+             <p style="margin: 20px 0; font-weight: bold; color: #4113e8; font-size: 20px">v_cruise</p>
+           <span id="out_v_cruise" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span> <small>m/s</small>
+            </div>
+            <div style="flex: 1">
+           <p style="margin: 20px 0; font-weight: bold; color: #4113e8; font-size: 20px">reynolds_num</p>
+           <span id="out_reynolds" style="color: #0b0b0b; font-weight: bold; font-size: 18px;">--</span> 
+          </div>
+              </div>
+            
+              <hr>
+              <div ><span>C</span><b style="color : #0e5178"> Horizontal Stabilizer & Elevator </b></div>
+               <div style="display: flex; gap: 15px; margin-bottom: 10px;">
+                <div style="flex: 1" >
+                 <h5 style="margin: 20px 0; color:#053552; font-size: 20px;">Horiz Stabilizer Sizing</h5>
+                    <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px">horiz_wing_area</p></b>
+                    <span id="out_h_area" style="font-weight: bold; color: #0b0b0b; font-size: 20px;">--</span> <small>m^2</small>
+    
+                    <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px">horiz_wing_span</p></b>
+                     <span id="out_h_span" style="font-weight: bold; color: #0b0b0b; font-size: 20px;">--</span> <small>cm</small>
+                    <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px">horiz_mac</p></b>
+                     <span id="out_h_mac" style="font-weight: bold; color: #0b0b0b; font-size: 20px;">--</span> <small>cm</small>
+                    </div>
+                    
+                   <div style="flex: 1" >
+                    <h5 style="margin: 20px 0; color:#053552; font-size: 20px;">Control Surface (Elevator)</h5>
+                    <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px;">elevator_breadth</p></b>
+                     <span id="out_e_breadth" style="font-weight: bold; color:  #0b0b0b; font-size: 22px;">--</span> <small>cm</small>
+                    <b><p style="margin: 20px 0; color: #4113e8; font-size: 20px;">elevator_length</p></b>
+                       <span id="out_e_length" style="font-weight: bold; color:   #0b0b0b; font-size: 20px;">--</span> <small>cm</small>
+                    </div>
+                    </div>
+                     <hr>
+                     <div><span>D</span><b style="color: #053552"> Vertical Stabilizer & Rudder Sizing </b></div>
+                     <div style="display: flex; gap: 15px; margin-bottom: 10px;">
+                <div style="flex: 1" >
+                  <b><h5 style="margin: 20px 0; font-size: 20px;">Vert Stabilizer Sizing</h5></b>
+                    <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px;">vert_wing_area</p></b>
+                     <span id="out_v_area" style="font-weight: bold; color:  #0b0b0b; font-size: 20px;">--</span> <small>m^2</small>
+                    
+                    <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px">vert_wing_span</p></b>
+                      <span id="out_v_span" style="font-weight: bold; color: #0b0b0b; font-size: 20px;">--</span> <small>cm</small>
+                    
+                     
+                     <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px;">vert_mac</p></b>
+                       <span id="out_v_mac"   style="font-weight: bold; color: #0b0b0b; font-size: 20px;">--</span> <small>cm</small>
+                    
+                     
+                    </div>
+                     <div style="flex: 1">
+                     <h5 style="margin: 20px 0; font-size: 20px;">Control Surfaces (Rudder)</h5>
+                      <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px;">vert_chord_root</p></b>
+                       <span id="out_v_cr"   style="font-weight: bold; color: #0b0b0b; font-size: 20px;">--</span> <small>cm</small>
+                      
+                    
+                      <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px;">vert_chord_tip</p></b>
+                       <span id="out_v_ct"   style="font-weight: bold; color: #0b0b0b; font-size: 20px;">--</span> <small>cm</small>
+                      
+                     
+                       <b><p style="margin: 20px 0; color: #4113e8; font-size: 22px;">vert_height</p></b>
+                        <span id="out_v_h"   style="font-weight: bold; color:  #0b0b0b; font-size: 20px;">--</span> <small>cm</small>
+
+                      
+                     </div>
+                    </div>
+                    </div>
+                    </div>
+    <script>
+  const canvas = document.getElementById("uavCanvas");
+     const ctx = canvas.getContext("2d");
+    let wing_span;
+let MAC;
+let vert_chord_root;
+let vert_chord_tip;
+let vert_height;
+let horiz_mac;
+let horiz_wing_span;
+let total_moment_arm;
+      function drawUAV()
+     {
+      
+       const maxDrawableWidth = canvas.width * 0.8;
+const scale = maxDrawableWidth / wing_span;
+       const centerX = canvas.width / 2;
+    const wingY = 60;
+
+     //wing
+      let wingW =  wing_span*scale;
+      let wingH = MAC*scale;
+      let wingX = centerX-(wingW/2);
+      ctx.strokeStyle = "#4B0150";
+      ctx.strokeRect(wingX,wingY,wingW,wingH);
+     //line wing dim
+      ctx.beginPath();
+      let spanY = wingY-20;
+     ctx.moveTo(wingX,spanY);
+     ctx.lineTo(wingX+wingW,spanY);
+     ctx.strokeStyle = "#4f46e5";
+     ctx.lineWidth = 1.2;
+     ctx.stroke();
+     //arrow left wing dim
+     ctx.beginPath();
+     ctx.moveTo(wingX, spanY); 
+      ctx.lineTo(wingX+ 8, spanY - 4); 
+     ctx.lineTo(wingX + 8, spanY + 4);
+     ctx.fillStyle = "#4f46e5";
+       ctx.fill();
+    // arrow right wing dim
+       ctx.beginPath();
+       ctx.moveTo(wingX+wingW, spanY);
+        ctx.lineTo(wingX+wingW - 8, spanY - 4);
+       ctx.lineTo(wingX+wingW - 8, spanY + 4);
+       ctx.fillStyle = "#4f46e5";
+       ctx.fill();
+
+     ctx.fillStyle="#4f46e5";
+     ctx.font = "bold 11px sans-serif";
+     ctx.textAlign = "center";
+     ctx.fillText("b = " + wing_span.toFixed(1) + " cm", centerX, spanY - 8);
+       // wing side dim
+     ctx.beginPath();
+     let macX = wingX-10;
+     ctx.moveTo(macX,wingY);
+     let bottomY = wingH + wingY;
+     ctx.lineTo(macX,wingH + wingY);
+     ctx.strokeStyle = "#4f46e5";
+     ctx.lineWidth = 1.2;
+     ctx.stroke();
+ // up arrow
+     ctx.beginPath();
+     ctx.moveTo(macX,wingY); 
+      ctx.lineTo(macX-4,wingY+8); 
+     ctx.lineTo( macX+4,wingY+8);
+     ctx.fillStyle = "#4f46e5";
+       ctx.fill();
+// down arrow
+ctx.beginPath();
+     ctx.moveTo(macX,wingH + wingY); 
+      ctx.lineTo(macX+4,wingH + wingY-8); 
+     ctx.lineTo( macX-4,wingH + wingY-8);
+     ctx.fillStyle = "#4f46e5";
+       ctx.fill();
+        ctx.fillStyle="#4f46e5";
+     ctx.font = "bold 11px sans-serif";
+     ctx.textAlign = "right";
+     ctx.fillText(MAC.toFixed(1) + " cm", macX - 6, (wingY + bottomY) / 2 + 4);
+//rod
+      let rodStartX = centerX
+      let rodStartY = wingH + wingY;
+      let wingCG_Y = wingY + (0.28*MAC*scale);
+      
+      ctx.beginPath();
+      ctx.moveTo(rodStartX,rodStartY);
+      let horizH = horiz_mac*scale;
+       let upperTailFixed = horizH * 0.65;
+       let tailHinge_Y = wingCG_Y + (total_moment_arm * scale);
+       let rodEndY = tailHinge_Y - upperTailFixed;
+       ctx.lineTo(centerX, rodEndY);
+      
+      ctx.strokeStyle = "#63666A";
+      ctx.lineWidth = 4;
+      ctx.stroke();
+      ctx.beginPath();
+       let refX = centerX + 20;
+       let horiz_cg = 0.35*horiz_mac*scale;
+       let refY = horiz_cg + rodEndY;
+      
+      ctx.moveTo(refX,wingCG_Y);
+      ctx.lineTo(refX, refY);
+      ctx.setLineDash([4,4]);
+      ctx.strokeStyle = "#90EE90";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      //dim lt
+      
+       ctx.fill();
+        ctx.fillStyle="#4f46e5";
+     ctx.font = "bold 11px sans-serif";
+     ctx.textAlign = "right";
+     ctx.fillText( "Lt = " + total_moment_arm +  "cm",refX+60,wingCG_Y+60);
+
+      //horiz
+      let horizW = horiz_wing_span*scale;
+      let tailX = centerX-(horizW/2);
+      let tailY =  rodEndY;
+      ctx.strokeStyle = "#334155";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(tailX,tailY,horizW,horizH);
+
+       ctx.beginPath();
+       let hingeY = tailY + (0.65*horizH);
+       ctx.moveTo(tailX,hingeY);
+       ctx.lineTo(tailX+horizW,hingeY);
+       ctx.setLineDash([5,4]);
+       ctx.strokeStyle = "#475569";
+       ctx.lineWidth = 1.5;
+       ctx.stroke();
+       ctx.beginPath();
+       ctx.moveTo(tailX,hingeY);
+       ctx.lineTo(tailX+horizW,hingeY);
+       ctx.lineTo(tailX+horizW,tailY+horizH);
+       ctx.lineTo(tailX, tailY + horizH);
+       ctx.closePath();
+       ctx.fillStyle = "rgba(254, 226, 226, 0.6)";
+       ctx.fill();
+       ctx.setLineDash([]);
+       //dim elevator 
+       ctx.fill();
+        ctx.fillStyle="#ff8c00";
+     ctx.font = "bold 11px sans-serif";
+     ctx.textAlign = "right";
+     ctx.fillText( "Elevator(35% Chord)",tailX+horizW+110,tailY+horizH-10);
+      //box
+      let boxX = 30;
+      let boxY = canvas.height - 160;
+      let boxW = 180;
+      let boxH = 140;
+      ctx.strokeStyle = "#cdb5e1";
+      ctx.lineWidth = 2;
+      ctx.fillStyle = "#ffffff";
+      ctx.strokeRect(boxX,boxY,boxW,boxH);
+      ctx.font = "bold 12px Arial";
+      ctx.fillStyle = "#64748b";
+      ctx.textAlign = "left";
+      ctx.fillText("SIDE PROFILE (V-TAIL)", boxX + 15, boxY - 10);
+      //vert-tail
+      let scaledcr = vert_chord_root*scale;
+      let scaledct = vert_chord_tip*scale;
+      let scaledH = vert_height*scale;
+      let startX = boxX + 30;
+     let baseY = boxY + boxH - 30;
+     let topY = baseY - scaledH;
+     let sweepOffset = 15;
+     ctx.beginPath();
+     ctx.moveTo(startX, baseY);                              
+     ctx.lineTo(startX + sweepOffset, topY);                 
+       
+     let straightX = startX + sweepOffset + scaledct;  
+      ctx.lineTo( straightX , topY);
+      ctx.lineTo(straightX, baseY);
+
+       ctx.closePath();
+     ctx.strokeStyle = "#334155";
+     ctx.lineWidth = 1.5;
+     ctx.stroke();
+     ctx.fillStyle = "rgba(211,211,211)";
+     ctx.fill();
+
+     ctx.beginPath();
+    let vertrefX = startX + sweepOffset + (0.65*scaledct);
+     ctx.moveTo(vertrefX,topY);
+     let vertrefX2 = startX + (0.65*scaledcr);
+     ctx.lineTo(vertrefX2,baseY);
+     ctx.setLineDash([5,4]);
+     ctx.lineWidth = 1.5;
+     ctx.stroke();
+     ctx.beginPath();
+
+     ctx.moveTo(vertrefX,topY);       
+                           
+     ctx.lineTo(straightX, topY);                 
+     ctx.lineTo(straightX,baseY);                             
+     ctx.lineTo(vertrefX2, baseY);                           
+      ctx.closePath(); 
+
+
+      ctx.fillStyle = "rgba(254, 240, 138, 0.5)";
+     ctx.fill();
+      ctx.setLineDash([]);
+      //dim v-tail
+     ctx.strokeStyle = "#4f46e5";
+      ctx.fillStyle = "#4f46e5";
+      ctx.lineWidth = 1.2;
+      ctx.font = "11px monospace";
+
+
+     let ctLineY = topY - 15;
+     let ctLeftX = startX + sweepOffset;
+      let ctRightX = ctLeftX + scaledct;
+
+     // Main Horizontal Line
+     ctx.beginPath();
+     ctx.moveTo(ctLeftX, ctLineY);
+      ctx.lineTo(ctRightX, ctLineY);
+      ctx.stroke();
+
+     ctx.beginPath(); ctx.moveTo(ctLeftX, ctLineY);
+     ctx.lineTo(ctLeftX + 6, ctLineY - 3); ctx.lineTo(ctLeftX + 6, ctLineY + 3); ctx.fill();
+
+      // Right Arrowhead (►)
+     ctx.beginPath(); ctx.moveTo(ctRightX, ctLineY);
+     ctx.lineTo(ctRightX - 6, ctLineY - 3); ctx.lineTo(ctRightX - 6, ctLineY + 3); ctx.fill();
+
+     // Ct Metric Label Text
+     ctx.textAlign = "center";
+     ctx.fillText("Ct = " + vert_chord_tip.toFixed(1), (ctLeftX + ctRightX) / 2, ctLineY - 5);
+     let crLineY = baseY + 15; 
+     let crLeftX = startX;
+     let crRightX = startX + scaledcr;
+
+     ctx.beginPath();
+     ctx.moveTo(crLeftX, crLineY);
+ctx.lineTo(crRightX, crLineY);
+ctx.stroke();
+
+
+ctx.beginPath(); ctx.moveTo(crLeftX, crLineY);
+ctx.lineTo(crLeftX + 6, crLineY - 3); ctx.lineTo(crLeftX + 6, crLineY + 3); ctx.fill();
+
+
+ctx.beginPath(); ctx.moveTo(crRightX, crLineY);
+ctx.lineTo(crRightX - 6, crLineY - 3); ctx.lineTo(crRightX - 6, crLineY + 3); ctx.fill();
+
+
+ctx.textAlign = "center";
+ctx.fillText("Cr = " + vert_chord_root.toFixed(1), (crLeftX + crRightX) / 2, crLineY + 12);
+let hLineX = startX - 10; 
+
+
+ctx.beginPath();
+ctx.moveTo(hLineX, topY);
+ctx.lineTo(hLineX, baseY);
+ctx.stroke();
+
+ctx.beginPath(); ctx.moveTo(hLineX, topY);
+ctx.lineTo(hLineX - 3, topY + 6); ctx.lineTo(hLineX + 3, topY + 6); ctx.fill();
+
+ctx.beginPath(); ctx.moveTo(hLineX, baseY);
+ctx.lineTo(hLineX - 3, baseY - 6); ctx.lineTo(hLineX + 3, baseY - 6); ctx.fill();
+
+
+ctx.textAlign = "right";
+ctx.fillText("hv = " + vert_height.toFixed(1), hLineX + 5, (topY + baseY) / 2 + 4);
+//red dot 
+ctx.beginPath();
+ctx.arc(centerX, wingCG_Y, 5, 0, Math.PI * 2);
+ctx.fillStyle = "red";
+ctx.fill();
+   ctx.fillStyle="B22222";
+     ctx.font = "bold 11px sans-serif";
+     ctx.textAlign = "right";
+     ctx.fillText( "Estimated CG(28% of MAC)",centerX+170,wingCG_Y);
+     }
+     
+       
+        const slider= document.getElementById("Total Takeoff Weight (g)")
+        const counterDisplay=document.getElementById("counter-display")
+
+        
+        slider.addEventListener("input", updateWeightDisplay);
+        function updateWeightDisplay() 
+        {
+            
+            counterDisplay.innerText = slider.value;
+        }
+
+         const wingSlider= document.getElementById("Wing Loading")
+        const wingDisplay=document.getElementById("wing-Display")
+
+        
+        wingSlider.addEventListener("input", updatewingDisplay);
+        function updatewingDisplay() 
+        {
+            
+            wingDisplay.innerText = wingSlider.value;
+        }
+         const MainAspectRatioslider = document.getElementById("Main Aspect Ratio")
+        const MainAspectRatioDisplay=document.getElementById("Main-Aspect-Ratio-Display")
+
+        
+       MainAspectRatioslider.addEventListener("input", updateMainAspectRatioDisplay);
+        function updateMainAspectRatioDisplay() 
+        {
+            MainAspectRatioDisplay.innerText = MainAspectRatioslider.value;
+           
+        }
+         const TotalMomentArmslider = document.getElementById("Total Moment Arm")
+        const TotalMomentArmDisplay=document.getElementById("Total-Moment-Arm-Display")
+
+        
+       TotalMomentArmslider.addEventListener("input", updateTotalMomentArmDisplay);
+        function updateTotalMomentArmDisplay() 
+        {
+            TotalMomentArmDisplay.innerText = TotalMomentArmslider.value;
+           
+        }
+        const HorizTailCoeffslider = document.getElementById("Horiz Tail Coeff")
+        const HorizTailCoeffDisplay=document.getElementById("Horiz-Tail-Coeff-Display")
+
+        
+      HorizTailCoeffslider.addEventListener("input", updateHorizTailCoeffDisplay);
+        function updateHorizTailCoeffDisplay() 
+        {
+            HorizTailCoeffDisplay.innerText = HorizTailCoeffslider.value;
+           
+        }
+       const HorizAspectRatioslider = document.getElementById("Horiz Aspect Ratio")
+        const HorizAspectRatioDisplay=document.getElementById("Horiz-Aspect-Ratio-Display")
+
+        
+      HorizAspectRatioslider.addEventListener("input", updateHorizAspectRatioDisplay);
+        function updateHorizAspectRatioDisplay() 
+        {
+            HorizAspectRatioDisplay.innerText = HorizAspectRatioslider.value;
+           
+        }
+        const VertTailVolCoeffslider = document.getElementById("Vert Tail Vol Coeff")
+        const VertTailVolCoeffDisplay=document.getElementById("Vert-Tail-Vol-Coeff-Display")
+
+        
+      VertTailVolCoeffslider.addEventListener("input", updateVertTailVolCoeffDisplay);
+        function updateVertTailVolCoeffDisplay() 
+        {
+            VertTailVolCoeffDisplay.innerText = VertTailVolCoeffslider.value;
+           
+        }
+        const VertAspectRatioslider = document.getElementById("Vert Aspect Ratio")
+        const VertAspectRatioDisplay=document.getElementById("Vert-Aspect-Ratio-Display")
+
+        
+      VertAspectRatioslider.addEventListener("input", updateVertAspectRatioDisplay);
+        function updateVertAspectRatioDisplay() 
+        {
+            VertAspectRatioDisplay.innerText = VertAspectRatioslider.value;
+           
+        }
+         const MaxLiftCoeffslider = document.getElementById("Max Lift Coeff")
+        const MaxLiftCoeffDisplay=document.getElementById("Max-Lift-Coeff-Display")
+
+        
+      MaxLiftCoeffslider.addEventListener("input", updateMaxLiftCoeffDisplay);
+        function updateMaxLiftCoeffDisplay() 
+        {
+           MaxLiftCoeffDisplay.innerText = MaxLiftCoeffslider.value;
+           
+        }
+         const AngleofAttackslider = document.getElementById("Angle of Attack")
+        const AngleofAttackDisplay=document.getElementById("Angle-of-Attack-Display")
+
+        
+      AngleofAttackslider.addEventListener("input", updateAngleofAttackDisplay);
+        function updateAngleofAttackDisplay() 
+        {
+         AngleofAttackDisplay.innerText = AngleofAttackslider.value;
+           
+        }
+         const WingTunnelVelocityslider = document.getElementById("Wing Tunnel Velocity")
+        const WingTunnelVelocityDisplay=document.getElementById("Wing-Tunnel-Velocity-Display")
+
+        
+      WingTunnelVelocityslider.addEventListener("input", updateWingTunnelVelocityDisplay);
+        function updateWingTunnelVelocityDisplay() 
+        {
+         WingTunnelVelocityDisplay.innerText = WingTunnelVelocityslider.value;
+           
+        }
+        const PayloadBalanceShiftslider = document.getElementById("Payload Balance Shift")
+        const PayloadBalanceShiftDisplay=document.getElementById("Payload-Balance-Shift-Display")
+
+        
+      PayloadBalanceShiftslider.addEventListener("input", updatePayloadBalanceShiftDisplay);
+        function updatePayloadBalanceShiftDisplay() 
+        {
+         PayloadBalanceShiftDisplay.innerText = PayloadBalanceShiftslider.value;
+           
+        } 
+      const open = document.getElementById("open");
+      const content_container = document.getElementById("content_container");
+      const close = document.getElementById("close");
+      open.addEventListener('click',() => {
+        content_container.classList.add('show');
+        document.body.style.overflow = "hidden";
+      })
+      close.addEventListener('click',() => {
+        content_container.classList.remove('show');
+        document.body.style.overflow = "auto";
+      })
+     
+  // DEVELOPMENT NOTE : I designed and built the entire frontend visual layout and graphics architecture. 
+// The bridging pipeline function `runAerodynamicPipeline` was optimized and connected with AI assistance.
+function runaerodynamicpipeline() {
+    
+    const payload = {
+        total_takeoff_weight_g: parseFloat(document.getElementById("Total Takeoff Weight (g)") ? document.getElementById("Total Takeoff Weight (g)").value : 700),
+        wing_loading: parseFloat(document.getElementById("Wing Loading") ? document.getElementById("Wing Loading").value : 37.5),
+        main_aspect_ratio: parseFloat(document.getElementById("Main Aspect Ratio") ? document.getElementById("Main Aspect Ratio").value : 9),
+        total_moment_arm: parseFloat(document.getElementById("Total Moment Arm") ? document.getElementById("Total Moment Arm").value : 52),
+        horiz_tail_vol_coeff: parseFloat(document.getElementById("Horiz Tail Coeff") ? document.getElementById("Horiz Tail Coeff").value : 0.5),
+        horiz_aspect_ratio: parseFloat(document.getElementById("Horiz Aspect Ratio") ? document.getElementById("Horiz Aspect Ratio").value : 4),
+        vert_tail_vol_coeff: parseFloat(document.getElementById("Vert Tail Vol Coeff") ? document.getElementById("Vert Tail Vol Coeff").value : 0.04),
+        vert_aspect_ratio: parseFloat(document.getElementById("Vert Aspect Ratio") ? document.getElementById("Vert Aspect Ratio").value : 1.6),
+        max_lift_coeff: parseFloat(document.getElementById("Max Lift Coeff") ? document.getElementById("Max Lift Coeff").value : 1.5),
+        angle_of_attack: parseFloat(document.getElementById("Angle of Attack") ? document.getElementById("Angle of Attack").value : 5.0),
+        wing_tunnel_velocity: parseFloat(document.getElementById("Wing Tunnel Velocity") ? document.getElementById("Wing Tunnel Velocity").value : 15.0),
+        payload_balance_shift: parseFloat(document.getElementById("Payload Balance Shift") ? document.getElementById("Payload Balance Shift").value : 0.0)
+    };
+
+    fetch('http://localhost:8080/run_cpp_engine', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(function(response) {
+        if (!response.ok) throw new Error("C++ Calculations Engine failed");
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(" Data successfully mapped to explicit IDs:", data);
+
+        
+        wing_span = data.wing_span ? data.wing_span * 100 : 145.6;
+        MAC = data.MAC ? data.MAC * 100 : 16.2;
+        vert_chord_root = data.vert_cr ? data.vert_cr * 100 : 14.7;
+        vert_chord_tip = data.vert_ct ? data.vert_ct * 100 : 10.3;
+        vert_height = data.vert_h ? data.vert_h * 100 : 21.2;
+        horiz_mac = data.horiz_mac ? data.horiz_mac * 100 : 6.0;
+       horiz_wing_span = data.horiz_wing_span ? data.horiz_wing_span * 100 : 34.4;
+       total_moment_arm = payload.total_moment_arm; 
+       
+      
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawUAV();
+
+        document.getElementById("out_wing_area").innerText = (data.wing_area || 0).toFixed(4);
+        document.getElementById("out_wing_span").innerText = (data.wing_span || 0).toFixed(2);
+        document.getElementById("out_mac").innerText       = (data.MAC || 0).toFixed(2);
+
+        document.getElementById("out_v_stall").innerText   = (data.v_stall || 0).toFixed(1);
+        document.getElementById("out_v_cruise").innerText  = (data.v_cruise || 0).toFixed(1);
+        document.getElementById("out_reynolds").innerText  = Math.round(data.reynolds_num || 0).toLocaleString();
+
+        document.getElementById("out_h_area").innerText    = (data.horiz_wing_area || 0).toFixed(4);
+        document.getElementById("out_h_span").innerText    = ((data.horiz_wing_span || 0) * 100).toFixed(1);
+        document.getElementById("out_h_mac").innerText     = ((data.horiz_mac || 0) * 100).toFixed(1);
+        document.getElementById("out_e_breadth").innerText = ((data.elevator_breadth || 0) * 100).toFixed(1);
+        document.getElementById("out_e_length").innerText  = ((data.elevator_length || 0) * 100).toFixed(1);
+
+        document.getElementById("out_v_area").innerText    = (data.vert_wing_area || 0).toFixed(4);
+        document.getElementById("out_v_span").innerText    = ((data.vert_wing_span || 0) * 100).toFixed(1);
+        document.getElementById("out_v_mac").innerText     = ((data.vert_mac || 0) * 100).toFixed(1);
+        document.getElementById("out_v_cr").innerText      = (vert_chord_root).toFixed(1);
+        document.getElementById("out_v_ct").innerText      = (vert_chord_tip).toFixed(1);
+        document.getElementById("out_v_h").innerText       = (vert_height).toFixed(1);
+        document.getElementById("out_lift").innerText = (data.lift || 0).toFixed(3);
+         document.getElementById("out_cl").innerText   = (data.cl || 0).toFixed(3);
+        document.getElementById("out_cd").innerText   = (data.cd || 0).toFixed(4);
+        document.getElementById("out_drag_force").innerText = (data.drag_force || 0).toFixed(3);
+    })
+        
+    .catch(function(err) {
+        console.error("Pipeline Connection Error:", err);
+    });
+}
+
+
+function refreshAllDynamicCounters() {
+    if (typeof updateWeightDisplay === "function") updateWeightDisplay(); 
+    if (typeof updatewingDisplay === "function") updatewingDisplay(); 
+    if (typeof updateMainAspectRatioDisplay === "function") updateMainAspectRatioDisplay();
+    if (typeof updateTotalMomentArmDisplay === "function") updateTotalMomentArmDisplay();
+    if (typeof updateHorizTailCoeffDisplay === "function") updateHorizTailCoeffDisplay();
+    if (typeof updateHorizAspectRatioDisplay === "function") updateHorizAspectRatioDisplay();
+    if (typeof updateVertTailVolCoeffDisplay === "function") updateVertTailVolCoeffDisplay();
+    if (typeof updateVertAspectRatioDisplay === "function") updateVertAspectRatioDisplay();
+    if (typeof updateMaxLiftCoeffDisplay === "function") updateMaxLiftCoeffDisplay();
+    if (typeof updateAngleofAttackDisplay === "function") updateAngleofAttackDisplay();
+    if (typeof updateWingTunnelVelocityDisplay === "function") updateWingTunnelVelocityDisplay();
+    if (typeof updatePayloadBalanceShiftDisplay === "function") updatePayloadBalanceShiftDisplay();
+}
+
+
+window.addEventListener('load', function() {
+    console.log("✈️ Page loaded on Live Server. Launching initial pipeline request...");
+    refreshAllDynamicCounters(); 
+    runaerodynamicpipeline();    
+});
+
+
+document.getElementById("Total Takeoff Weight (g)").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Wing Loading").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Main Aspect Ratio").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Total Moment Arm").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Horiz Tail Coeff").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Horiz Aspect Ratio").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Vert Tail Vol Coeff").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Vert Aspect Ratio").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Max Lift Coeff").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Angle of Attack").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Wing Tunnel Velocity").addEventListener('input', runaerodynamicpipeline);
+document.getElementById("Payload Balance Shift").addEventListener('input', runaerodynamicpipeline);
+
+
+document.getElementById('btn_reset').addEventListener('click', function() {
+    console.log("🔄 Reset button pressed. Restoring initial configurations...");
+    
+    document.getElementById("Total Takeoff Weight (g)").value = 700;
+    document.getElementById("Wing Loading").value = 37.5;
+    document.getElementById("Main Aspect Ratio").value = 9;
+    document.getElementById("Total Moment Arm").value = 52;
+    document.getElementById("Horiz Tail Coeff").value = 0.5; 
+    document.getElementById("Horiz Aspect Ratio").value = 4;
+    document.getElementById("Vert Tail Vol Coeff").value = 0.04;
+    document.getElementById("Vert Aspect Ratio").value = 1.6;
+    document.getElementById("Max Lift Coeff").value = 1.5;
+    document.getElementById("Angle of Attack").value = 5;
+    document.getElementById("Wing Tunnel Velocity").value = 15;
+    document.getElementById("Payload Balance Shift").value = 0;
+
+    refreshAllDynamicCounters();
+    runaerodynamicpipeline(); 
+});
+</script>
+</body>
+</html>
