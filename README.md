@@ -16,12 +16,15 @@ Adjusting the sliders triggers instant mathematical updates across the schematic
 * **Aerodynamics Engine & Bridge:** Integrated C++ computational workspace modules (`UAV_workspace_Engine.cpp`) bridged seamlessly via structural Python scripting logic (`bridge.py`).
 * **Frontend UI Framework:** HTML5 Custom Graphic Components, CSS Grid Matrices.
 * **Core Execution Pipeline:** (JavaScript) Event Listeners for real-time state management and dynamic canvas updates.
-# Screeshots
-[Dashboard Overview] !(screenshots/01_dashboard_overview_top.png)
-* Top of dashboard — Card A sizing sliders, live schematic (top wing view), and initial sizing outputs*
-  [Schematic Detail & Stabilizer Outputs] !(screenshots/02_schematic_detail_and_stabilizer_outputs.png)
+## Screenshots
+
+![Dashboard Overview](screenshots/01_dashboard_overview_top.png)
+*Top of dashboard — Card A sizing sliders, live schematic (top wing view), and initial sizing outputs*
+
+![Schematic Detail & Stabilizer Outputs](screenshots/02_schematic_detail_and_stabilizer_outputs.png)
 *V-tail side profile schematic, physics constants panel, and horizontal/vertical stabilizer sizing outputs*
-  [Card B & Flight Performance Outputs] !(screenshots/03_card_b_and_flight_outputs.png)
+
+![Card B & Flight Performance Outputs](screenshots/03_card_b_and_flight_outputs.png)
 *Card B environment/balance sliders with live lift, drag, and vertical stabilizer outputs*
 # DEVELOPMENT NOTE : 
 * **Core Engineering Work:** UAV_workspace_Engine.cpp — The full aerodynamic and structural sizing engine (wing planform sizing, tail volume coefficient calculations, stall/cruise velocity, Reynolds number, lift/drag computation, elevator and rudder sizing) was independently designed and implemented by me. All governing equations, constants, and engineering assumptions reflect my own aerospace calculations.
