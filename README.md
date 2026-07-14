@@ -1,5 +1,14 @@
 # UAV-Design-Schematic-Engine
 An interactive aerospace engineering dashboard designed for live UAV layout tracking.Moving input sliders triggers realtime aerodynamic calculations for main wing/tail surface sizing flight performance metrics (Reynolds number stall/cruise speeds), and fluid forces (lift and drag parameters) while dynamically shifting the blueprint vector graphics.
+ ## How to Run the Application Locally
+ * **Since this engineering dashboard processes aerospace equations through a high-performance desktop pipeline, it runs locally on your machine using a C++ backend and a Python data bridge.
+ * open the VS code
+  # ## step by step execution:
+ * **Download the Repository:**  **Download ZIP** (or clone the repository). Extract the files(the UAV Engine $ UAV Frontend $ bridge.py) to a folder.
+ * **Compile the C++ Engine:** Open your terminal/command prompt in the project directory and compile the backend core logic:
+   ```bash
+ * **g++ UAV_workspace_Engine.cpp -o UAV_workspace_Engine.exe**
+  * **python bridge.py** 
 # Interactive UAV Design & Layout Dashboard
 # Dynamic Control Vectors (Interactive Sliders)
 *The dashboard features real-time control inputs mapped via JavaScript event hooks:
