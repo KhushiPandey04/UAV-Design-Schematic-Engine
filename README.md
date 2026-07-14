@@ -35,8 +35,8 @@ Adjusting the sliders triggers instant mathematical updates across the schematic
 
 ![Card B & Flight Performance Outputs](screenshots/03_card_b_and_flight_outputs.png)
 *Card B environment/balance sliders with live lift, drag, and vertical stabilizer outputs*
-## Demo Video 
-![Demo Uav (1).mp4]
+## Demo Video
+📹 [Watch the demo video](Demo%20Uav%20(1).mp4)
 **Dynamic Transformations:** Watch the schematic vector layout scale instantly as you move control inputs.
 ***Observe** the calculation matrix update flight metrics and also an Aerodynamic Pop up Guide tells how sliders extremes affect Vector layouts and outputs calculation.
 # DEVELOPMENT NOTE : 
