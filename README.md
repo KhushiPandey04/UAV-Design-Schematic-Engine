@@ -8,7 +8,9 @@ An interactive aerospace engineering dashboard designed for live UAV layout trac
  * **Download the Repository:**  **Download ZIP** (or clone the repository). Extract the files(the UAV Engine $ UAV Frontend $ bridge.py) to a folder.
  * **Compile the C++ Engine:** Open your terminal/command prompt in the project directory and compile the backend core logic:
  * **g++ UAV_workspace_Engine.cpp -o UAV_workspace_Engine.exe**
-  * **python bridge.py** 
+  * **python bridge.py**
+  * # ##Demo video of Web
+   https://github.com/user-attachments/assets/a32dc96e-ce29-45f0-94f1-f481270a47ed
 # Interactive UAV Design & Layout Dashboard
 # Dynamic Control Vectors (Interactive Sliders)
 *The dashboard features real-time control inputs mapped via JavaScript event hooks:
