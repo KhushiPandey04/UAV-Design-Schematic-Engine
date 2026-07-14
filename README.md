@@ -10,7 +10,7 @@ An interactive aerospace engineering dashboard designed for live UAV layout trac
  * **g++ UAV_workspace_Engine.cpp -o UAV_workspace_Engine.exe**
   * **python bridge.py**
   * # ## video attached for same
-  https://github.com/user-attachments/assets/79c27107-76f3-4477-ac63-2f8d77c3bce6
+ 
   * # ##Demo video of Web
    https://github.com/user-attachments/assets/a32dc96e-ce29-45f0-94f1-f481270a47ed
 # Interactive UAV Design & Layout Dashboard
