@@ -5,7 +5,7 @@ An interactive aerospace engineering dashboard designed for live UAV layout trac
  * **Since this engineering dashboard processes aerospace equations through a high-performance desktop pipeline, it runs locally on your machine using a C++ backend and a Python data bridge.
  * open the VS code
   # ## step by step execution:
- * **Download the Repository:**  **Download ZIP** (or clone the repository). Extract the files(the UAV Engine $ UAV Frontend $ bridge.py) to a folder.
+ * **Download the Repository:**  **Download ZIP** (or clone the repository). Extract the files(the UAV_Workspace_engine $ UAV Frontend index.html $ bridge.py) to a folder.
  * **Compile the C++ Engine:** Open your terminal/command prompt in the project directory and compile the backend core logic:
  * **g++ UAV_workspace_Engine.cpp -o UAV_workspace_Engine.exe**
   * **python bridge.py**
