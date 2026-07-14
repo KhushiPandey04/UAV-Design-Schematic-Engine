@@ -25,18 +25,6 @@ Adjusting the sliders triggers instant mathematical updates across the schematic
 * **Aerodynamics Engine & Bridge:** Integrated C++ computational workspace modules (`UAV_workspace_Engine.cpp`) bridged seamlessly via structural Python scripting logic (`bridge.py`).
 * **Frontend UI Framework:** HTML5 Custom Graphic Components, CSS Grid Matrices.
 * **Core Execution Pipeline:** (JavaScript) Event Listeners for real-time state management and dynamic canvas updates.
-## Screenshots
-
-![Dashboard Overview](screenshots/01_dashboard_overview_top.png)
-*Top of dashboard — Card A sizing sliders, live schematic (top wing view), and initial sizing outputs*
-
-![Schematic Detail & Stabilizer Outputs](screenshots/02_schematic_detail_and_stabilizer_outputs.png)
-*V-tail side profile schematic, physics constants panel, and horizontal/vertical stabilizer sizing outputs*
-
-![Card B & Flight Performance Outputs](screenshots/03_card_b_and_flight_outputs.png)
-*Card B environment/balance sliders with live lift, drag, and vertical stabilizer outputs*
-## Demo Video
-📹 [Watch the demo video](Demo%20Uav%20(1).mp4)
 **Dynamic Transformations:** Watch the schematic vector layout scale instantly as you move control inputs.
 ***Observe** the calculation matrix update flight metrics and also an Aerodynamic Pop up Guide tells how sliders extremes affect Vector layouts and outputs calculation.
 # DEVELOPMENT NOTE : 
