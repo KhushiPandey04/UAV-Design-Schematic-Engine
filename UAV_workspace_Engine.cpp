@@ -164,7 +164,7 @@ outputs->drag_force = 0.5*rho*outputs->v_stall*outputs->v_stall*outputs->wing_ar
   
 void display_results( const UAVoutputs* outputs) {
     std::cout << "{"
-              << "\"wing_span\":" << (outputs->wing_span) << "," // Convert to meters for JS mapping conversion
+              << "\"wing_span\":" << (outputs->wing_span) << "," 
               << "\"MAC\":" << (outputs->MAC ) << ","
               << "\"vert_cr\":" << (outputs->vert_chord_root ) << ","
               << "\"vert_ct\":" << (outputs->vert_chord_tip ) << ","
